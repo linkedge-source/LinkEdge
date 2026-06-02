@@ -1,76 +1,57 @@
-# LinkEdge - Sistema Inteligente de Monitoramento e Comunicação Emergencial
+# LinkEdge – Sistema Inteligente de Monitoramento e Comunicação Emergencial
 
 ## 📖 Sobre o Projeto
 
-O **LinkEdge** é um sistema desenvolvido em Python para monitoramento de áreas de risco, combinando sensores ambientais, análise de dados e comunicação via rede mesh e satélite.
+O **LinkEdge** é uma solução desenvolvida em Python para monitoramento de áreas de risco e apoio à comunicação em situações de emergência.
 
-O projeto foi criado como trabalho acadêmico para a disciplina de programação da **FIAP (Faculdade de Informática e Administração Paulista)**, com o objetivo de aplicar conceitos de lógica de programação, estruturas condicionais, laços de repetição, funções matemáticas e interação com o usuário.
+O sistema simula a coleta de dados ambientais, análise de condições críticas e seleção de rotas de comunicação por meio de uma rede mesh integrada à comunicação via satélite.
+
+Este projeto foi desenvolvido como trabalho acadêmico da **Global Solution FIAP**, aplicando conceitos fundamentais de programação estudados no primeiro semestre.
 
 ---
 
 ## 🎯 Objetivo
 
-O sistema simula uma central de monitoramento capaz de:
-
-* Monitorar temperatura da região;
-* Monitorar nível da água;
-* Detectar movimentações em áreas de risco;
-* Verificar o status da rede de comunicação;
-* Verificar conexão com satélite;
-* Selecionar automaticamente a melhor rota de comunicação;
-* Calcular o ângulo ideal de conexão com satélite;
-* Gerar relatórios de emergência.
+Desenvolver uma aplicação capaz de auxiliar no monitoramento de regiões vulneráveis, identificando possíveis situações de risco e fornecendo informações para tomada de decisão em cenários de emergência.
 
 ---
 
 ## ⚙️ Funcionalidades
 
-### 1. Monitoramento
+### 1. Sobre o Projeto
 
-Exibe informações coletadas pelos sensores:
+Apresenta uma breve descrição da solução desenvolvida.
 
-* Temperatura
+### 2. Monitoramento
+
+Permite registrar e visualizar informações coletadas por sensores:
+
+* Temperatura ambiente
 * Nível da água
 * Detecção de movimento
-* Status da rede
-* Status do satélite
 
-### 2. Roteamento Inteligente
+### 3. Roteamento Inteligente
 
-Analisa a qualidade do sinal dos nós da rede:
+Recebe os sinais de três nós da rede mesh:
 
 * Nó A
 * Nó B
 * Nó C
 
-O sistema escolhe automaticamente o nó com melhor sinal para comunicação.
+O sistema analisa os sinais e seleciona automaticamente a melhor rota de comunicação.
 
-### 3. Cálculo de Ângulo para Satélite
+### 4. Cálculo de Ângulo
 
-Utiliza funções matemáticas da biblioteca `math` para calcular o ângulo de comunicação com o satélite.
+Calcula o ângulo ideal de comunicação com o satélite utilizando funções matemáticas da biblioteca `math`.
 
-Fórmulas utilizadas:
+### 5. Relatório de Risco
 
-* `atan()`
-* `degrees()`
-
-O sistema informa se a conexão está estável ou instável.
-
-### 4. Relatório de Emergência
-
-Identifica automaticamente situações de risco:
+Analisa os dados fornecidos pelo usuário e identifica possíveis situações de emergência:
 
 * Enchente
 * Incêndio
 * Deslizamento
 * Área Segura
-
-Também apresenta:
-
-* Melhor nó selecionado
-* Status da rede
-* Status do satélite
-* Tempo estimado de resposta
 
 ---
 
@@ -81,28 +62,89 @@ Também apresenta:
 
 ---
 
-## 📂 Estrutura do Sistema
+## 📚 Conceitos Aplicados
 
-Menu principal:
+O projeto foi desenvolvido utilizando os conceitos exigidos pela disciplina:
 
-1 - Monitoramento
-2 - Roteamento
-3 - Calcular Ângulo
-4 - Relatório Final
-5 - Sair
+### Estruturas de Decisão
+
+* if
+* elif
+* else
+
+### Estruturas de Repetição
+
+* while
+* for
+
+### Estruturas de Dados
+
+* Listas (list)
+* Strings
+
+### Modularização
+
+* Funções (`def`)
+
+### Passagem de Parâmetros
+
+Exemplo:
+
+```python
+def gerar_risco(temperatura, nivel_agua, movimento):
+```
+
+### Retorno de Funções
+
+Exemplo:
+
+```python
+return "ENCHENTE"
+```
 
 ---
 
-## 🎓 Trabalho Acadêmico
+## 📂 Estrutura do Menu
 
-Projeto desenvolvido como atividade acadêmica da FIAP, aplicando conceitos de:
+```text
+1 - Sobre o Projeto
+2 - Monitoramento
+3 - Roteamento
+4 - Calcular Ângulo
+5 - Relatório
+6 - Sair
+```
 
-* Estruturas Condicionais (`if`, `elif`, `else`)
-* Laços de Repetição (`while`)
-* Entrada e Saída de Dados (`input` e `print`)
-* Operadores Lógicos
-* Bibliotecas Matemáticas
-* Simulação de Sistemas de Monitoramento
+---
+
+## 🚀 Como Executar
+
+1. Instale o Python 3 em sua máquina.
+2. Clone este repositório:
+
+```bash
+git clone https://github.com/SEU-USUARIO/LinkEdge.git
+```
+
+3. Acesse a pasta do projeto:
+
+```bash
+cd LinkEdge
+```
+
+4. Execute o programa:
+
+```bash
+python linkedge.py
+```
+
+5. Utilize o menu para navegar pelas funcionalidades.
+
+---
+
+## 🌎 Relação com a Global Solution
+
+O LinkEdge foi idealizado para simular uma solução tecnológica voltada ao monitoramento de áreas sujeitas a desastres naturais, permitindo a análise de dados ambientais e a comunicação eficiente em cenários de emergência.
 
 ---
 
@@ -113,3 +155,9 @@ Projeto desenvolvido como atividade acadêmica da FIAP, aplicando conceitos de:
 * Kaio Hiroki Kinoshita — RM569127
 
 ---
+
+## 🎓 Instituição
+
+FIAP – Faculdade de Informática e Administração Paulista
+
+Projeto acadêmico desenvolvido para a disciplina de Computational Thinking Using Python – Global Solution.
