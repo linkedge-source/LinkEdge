@@ -1,106 +1,157 @@
 import math
 
-temperatura = 0
-nivel_agua = 0
-movimento = 0
-rede = ""
-satelite = ""
-sinal_a = 0
-sinal_b = 0
-sinal_c = 0
-latencia = 0
+# =====================================
+# FUNCOES
+# =====================================
+
+def descricao_projeto():
+    print("\n=== SOBRE O PROJETO ===")
+    print("O LinkEdge monitora areas de risco.")
+    print("Utiliza sensores e comunicacao via satelite.")
+    print("Analisa sinais da rede mesh.")
+    print("Identifica situacoes de emergencia.")
+    print("E gera relatorios para resposta rapida.")
+
+def escolher_melhor_no(sinais):
+    maior = max(sinais)
+    indice = sinais.index(maior)
+
+    nos = ["NO A", "NO B", "NO C"]
+
+    return nos[indice]
+
+def monitoramento():
+
+    print("\n=== MONITORAMENTO ===")
+
+    temperatura = float(input("Digite a temperatura: "))
+    nivel_agua = float(input("Digite o nivel da agua (%): "))
+    movimento = int(input("Movimento detectado? (1=SIM / 0=NAO): "))
+
+    print("\n=== DADOS COLETADOS ===")
+    print("Temperatura:", temperatura, "C")
+    print("Nivel da agua:", nivel_agua, "%")
+
+    if movimento == 1:
+        print("Movimento detectado: SIM")
+    else:
+        print("Movimento detectado: NAO")
+
+def roteamento():
+
+    print("\n=== ROTEAMENTO ===")
+
+    sinal_a = int(input("Sinal do NO A: "))
+    sinal_b = int(input("Sinal do NO B: "))
+    sinal_c = int(input("Sinal do NO C: "))
+
+    sinais = [sinal_a, sinal_b, sinal_c]
+
+    print("\nSinais recebidos:")
+
+    for i in range(len(sinais)):
+        print("NO", chr(65 + i), "=", sinais[i])
+
+    melhor_no = escolher_melhor_no(sinais)
+
+    print("\nMelhor rota selecionada:", melhor_no)
+    
+def calcular_angulo():
+
+    print("\n=== CALCULO DE ANGULO ===")
+
+    altura = float(input("Altura do satelite: "))
+    distancia = float(input("Distancia horizontal: "))
+
+    angulo = math.degrees(
+        math.atan(altura / distancia)
+    )
+
+    print("Angulo:", round(angulo, 2), "graus")
+
+    if angulo >= 45:
+        print("Conexao estavel")
+    else:
+        print("Conexao instavel")
+        
+def gerar_risco(temperatura, nivel_agua, movimento):
+
+    if nivel_agua >= 80:
+        return "ENCHENTE"
+
+    elif temperatura >= 45:
+        return "INCENDIO"
+
+    elif movimento == 1:
+        return "DESLIZAMENTO"
+
+    else:
+        return "AREA SEGURA"
+
+
+def relatorio():
+
+    print("\n=== RELATORIO FINAL ===")
+
+    temperatura = float(input("Digite a temperatura: "))
+    nivel_agua = float(input("Digite o nivel da agua (%): "))
+    movimento = int(input("Movimento detectado? (1=SIM / 0=NAO): "))
+
+    risco = gerar_risco(
+        temperatura,
+        nivel_agua,
+        movimento
+    )
+
+    historico = []
+
+    historico.append(risco)
+
+    print("\n=== RESULTADO ===")
+    print("Risco identificado:", risco)
+
+    print("\nHistorico de analises:")
+
+    for item in historico:
+        print("-", item)
+
+
+# =====================================
+# MENU PRINCIPAL
+# =====================================
 
 while True:
 
-    print("\n=== LINKEDGE ===")
-    print("1 - Monitoramento")
-    print("2 - Roteamento")
-    print("3 - Calcular angulo")
-    print("4 - Relatorio")
-    print("5 - Sair")
+    print("\n================================")
+    print("LINKEDGE")
+    print("================================")
+    print("1 - Sobre o Projeto")
+    print("2 - Monitoramento")
+    print("3 - Roteamento")
+    print("4 - Calcular Angulo")
+    print("5 - Relatorio")
+    print("6 - Sair")
 
     opcao = input("Escolha uma opcao: ")
 
     if opcao == "1":
-
-        temperatura = float(input("Digite a temperatura: "))
-        nivel_agua = float(input("Digite o nivel da agua: "))
-        movimento = int(input("Movimento detectado? (1 = SIM / 0 = NAO): "))
-        rede = input("Status da rede (ONLINE/OFFLINE): ")
-        satelite = input("Satelite conectado? (SIM/NAO): ")
-
-        print("\n=== MONITORAMENTO ===")
-        print("Temperatura:", temperatura, "C")
-        print("Nivel da agua:", nivel_agua, "%")
-
-        if movimento == 1:
-            print("Movimento detectado: SIM")
-        else:
-            print("Movimento detectado: NAO")
-
-        print("Status da rede:", rede)
-        print("Satelite conectado:", satelite)
+        descricao_projeto()
 
     elif opcao == "2":
-
-        sinal_a = int(input("Digite o sinal do NO A: "))
-        sinal_b = int(input("Digite o sinal do NO B: "))
-        sinal_c = int(input("Digite o sinal do NO C: "))
-        latencia = int(input("Digite a latencia da rede: "))
-
-        if sinal_a >= sinal_b and sinal_a >= sinal_c:
-            melhor_no = "NO A"
-        elif sinal_b >= sinal_a and sinal_b >= sinal_c:
-            melhor_no = "NO B"
-        else:
-            melhor_no = "NO C"
-
-        print("\n=== ROTEAMENTO ===")
-        print("Melhor rota selecionada:", melhor_no)
-        print("Latencia estimada:", latencia, "ms")
+        monitoramento()
 
     elif opcao == "3":
-
-        altura = float(input("Digite a altura do satelite: "))
-        distancia = float(input("Digite a distancia horizontal: "))
-
-        angulo = math.degrees(math.atan(altura / distancia))
-
-        print("Angulo calculado:", round(angulo, 2), "graus")
-
-        if angulo >= 45:
-            print("Conexao estavel com o satelite")
-        else:
-            print("Conexao instavel")
+        roteamento()
 
     elif opcao == "4":
-
-        temperatura = float(input("Digite a temperatura: "))
-        nivel_agua = float(input("Digite o nivel da agua: "))
-        movimento = int(input("Movimento detectado? (1 = SIM / 0 = NAO): "))
-        rede = input("Status da rede (ONLINE/OFFLINE): ")
-        satelite = input("Satelite conectado? (SIM/NAO): ")
-
-        print("\n=== RELATORIO FINAL ===")
-
-        if nivel_agua >= 80:
-            risco = "ENCHENTE"
-        elif temperatura >= 45:
-            risco = "INCENDIO"
-        elif movimento == 1:
-            risco = "DESLIZAMENTO"
-        else:
-            risco = "AREA SEGURA"
-
-        print("Risco identificado:", risco)
+        calcular_angulo()
 
     elif opcao == "5":
-        print("Encerrando o sistema...")
+        relatorio()
+
+    elif opcao == "6":
+        print("Encerrando sistema...")
         break
-
+        
     else:
-        print("Opcao invalida")
-
-# Matheus Dionisio Cintra RM569844
-# Leonardo Daniel dos Santos RM571092
-# Kaio Hiroki Kinoshita RM569127
+        print("Opcao invalida!")
